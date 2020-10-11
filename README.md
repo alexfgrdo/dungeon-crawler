@@ -4,6 +4,19 @@
 
 ## Summary
 
+- [Dungeon Crawler](#dungeon-crawler)
+  - [Summary](#summary)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+    - [Running](#running)
+  - [Built With](#built-with)
+  - [To-do](#to-do)
+  - [Versioning](#versioning)
+  - [Authors](#authors)
+  - [License](#license)
+  - [Acknowledgments](#acknowledgments)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
