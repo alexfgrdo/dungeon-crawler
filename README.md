@@ -40,6 +40,10 @@ yarn start
 - [TypeScript](https://github.com/microsoft/TypeScript) - The language used.
 - [Phaser](https://github.com/photonstorm/phaser) - The framework used.
 
+## To-do
+
+1. ~~Extrude tileset.png with `tile-extruder -w 16 -h 16 -i tileset.png -o tileset_extruded.png`.~~
+
 ## Versioning
 
 **V 0.1.0**

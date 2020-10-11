@@ -9,8 +9,22 @@ export default class Game extends Phaser.Scene {
 
 	preload() {
 		//
-		// Création des inputs du clavier
+		// Keyboard inputs creation
 		this.keys = this.input.keyboard.createCursorKeys();
+
+		//
+		// Tileset creation
+		const tilemap = this.make.tilemap({ key: 'tileset' });
+		const tileset = tilemap.addTilesetImage('tileset', 'tiles', 16, 16, 1, 2);
+
+		//
+		// Show layers
+		tilemap.createStaticLayer('Ground', tileset);
+		const walls = tilemap.createStaticLayer('Walls', tileset);
+
+		//
+		// Set walls collision
+		walls.setCollisionByProperty({ collider: true });
 	}
 	create() {}
 }
