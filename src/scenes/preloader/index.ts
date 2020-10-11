@@ -10,4 +10,8 @@ export default class Preloader extends Phaser.Scene {
 	preload() {
 		this.load.setBaseURL(GAME_URL);
 	}
+
+	create() {
+		this.scene.start('game');
+	}
 }
