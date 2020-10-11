@@ -2,6 +2,6 @@
 /.cache
 /dist
 /node_modules
-/resources
+resources
 yarn.lock
 yarn-error.log
