@@ -47,7 +47,6 @@ export default class Game extends Phaser.Scene {
 		//
 		// Add player to the scene, this collision and camera
 		this.player = this.add.player(128, 128, 'player');
-		this.physics.add.collider(this.player, walls);
 		this.cameras.main.startFollow(this.player, true);
 
 		//
@@ -61,12 +60,28 @@ export default class Game extends Phaser.Scene {
 		});
 
 		//
-		// Position and collisions for enemy
+		// Position for enemy
 		enemies.get(150, 150, 'enemy');
-		this.physics.add.collider(enemies, walls);
 
-		//
-		// Collision for player and enemies
+		// Set player attack
+		const knives = this.physics.add.group({
+			classType: Phaser.Physics.Arcade.Image,
+		});
+
+		this.player.setKnives(knives);
+
+		// Set collisions
+		this.physics.add.collider(this.player, walls);
+		this.physics.add.collider(enemies, walls);
+		this.physics.add.collider(knives, walls);
+		this.physics.add.collider(knives, enemies);
+		this.physics.add.collider(
+			knives,
+			enemies,
+			this.handleKnivesEnemyCollision,
+			undefined,
+			this,
+		);
 		this.playerEnemyCollider = this.physics.add.collider(
 			enemies,
 			this.player,
@@ -78,6 +93,14 @@ export default class Game extends Phaser.Scene {
 		//
 		// Debug walls
 		// debugGraphics(walls, this);
+	}
+
+	private handleKnivesEnemyCollision(
+		a: Phaser.GameObjects.GameObject,
+		b: Phaser.GameObjects.GameObject,
+	) {
+		console.dir(a);
+		console.dir(b);
 	}
 
 	private handlePlayerEnemyCollision(
@@ -93,6 +116,8 @@ export default class Game extends Phaser.Scene {
 		const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
 		this.player.handleDamage(dir);
 
+		//
+		// Send event
 		sceneEvent.emit('player-health-changed', this.player.health);
 
 		//

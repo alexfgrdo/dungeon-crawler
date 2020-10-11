@@ -18,14 +18,26 @@ enum HealthState {
 	DEAD,
 }
 
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 	private healthState = HealthState.IDLE;
 	private damageTime = 0;
 
+	private direction = Direction.RIGHT;
+
 	private _health = 3;
+
 	get health() {
 		return this._health;
 	}
+
+	private knives?: Phaser.Physics.Arcade.Group;
 
 	constructor(
 		scene: Phaser.Scene,
@@ -55,6 +67,43 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			this.healthState = HealthState.DAMAGE;
 			this.setVelocity(dir.x, dir.y);
 		}
+	}
+
+	//
+	// Set knives
+	setKnives(knives: Phaser.Physics.Arcade.Group) {
+		this.knives = knives;
+	}
+
+	//
+	// Set knives animation
+	private throwKnife() {
+		if (!this.knives) return;
+
+		const vector = new Phaser.Math.Vector2(0, 0);
+
+		//
+		// Set knives direction
+		if (this.direction === Direction.UP) {
+			vector.y = -1;
+		} else if (this.direction === Direction.DOWN) {
+			vector.y = 1;
+		} else if (this.direction === Direction.LEFT) {
+			vector.x = -1;
+		} else if (this.direction === Direction.RIGHT) {
+			vector.x = 1;
+		} else return;
+
+		//
+		// Set knife rotation and velocity
+		const angle = vector.angle();
+		const knife = this.knives.get(
+			this.x,
+			this.y,
+			'knife',
+		) as Phaser.Physics.Arcade.Image;
+		knife.setRotation(angle);
+		knife.setVelocity(vector.x * 300, vector.y * 300);
 	}
 
 	preUpdate(t: number, dt: number) {
@@ -99,21 +148,32 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		}
 
 		//
+		// Configure space bar for knives
+		if (Phaser.Input.Keyboard.JustDown(keys.space!)) {
+			this.throwKnife();
+			return;
+		}
+
+		//
 		// Configuration of animations, velocity and directions
 		if (keys.left?.isDown) {
+			this.direction = Direction.LEFT;
 			this.setVelocity(-speed, 0);
 			this.anims.play('player-run', true);
 			this.scaleX = -1;
 			this.body.offset.x = 16;
 		} else if (keys.right?.isDown) {
+			this.direction = Direction.RIGHT;
 			this.setVelocity(speed, 0);
 			this.anims.play('player-run', true);
 			this.scaleX = 1;
 			this.body.offset.x = 0;
 		} else if (keys.up?.isDown) {
+			this.direction = Direction.UP;
 			this.setVelocity(0, -speed);
 			this.anims.play('player-run', true);
 		} else if (keys.down?.isDown) {
+			this.direction = Direction.DOWN;
 			this.setVelocity(0, speed);
 			this.anims.play('player-run', true);
 		} else {

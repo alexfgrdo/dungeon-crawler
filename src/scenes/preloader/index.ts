@@ -27,6 +27,10 @@ export default class Preloader extends Phaser.Scene {
 		// Load interface assets
 		this.load.image('heart-full', 'interface/heart_full.png');
 		this.load.image('heart-empty', 'interface/heart_empty.png');
+
+		//
+		// Load interface assets
+		this.load.image('knife', 'player/player_attack.png');
 	}
 
 	create() {
