@@ -58,6 +58,7 @@ yarn start
 1. ~~Extrude tileset.png with `tile-extruder -w 16 -h 16 -i tileset.png -o tileset_extruded.png`.~~
 2. ~~Fix player animations bug.~~
 3. ~~Download or final assets for this game.~~
+4. Do refactoring
 
 ## Versioning
 
