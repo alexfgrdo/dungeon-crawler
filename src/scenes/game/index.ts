@@ -62,7 +62,7 @@ export default class Game extends Phaser.Scene {
 
 		//
 		// Position and collisions for enemy
-		enemies.get(256, 256, 'enemy');
+		enemies.get(150, 150, 'enemy');
 		this.physics.add.collider(enemies, walls);
 
 		//
