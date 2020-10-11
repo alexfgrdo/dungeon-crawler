@@ -144,7 +144,8 @@ Phaser.GameObjects.GameObjectFactory.register('player', function (
 
 	//
 	// Set player size
-	sprite.body.setSize(sprite.width * 1, sprite.height * 1);
+	sprite.body.setSize(sprite.width * 1, sprite.height * 0.6);
+	sprite.body.offset.y = 10;
 
 	return sprite;
 });
