@@ -7,3 +7,5 @@ export {
 } from './config';
 
 export { debugGraphics } from './debug';
+
+export { sceneEvent } from './events';

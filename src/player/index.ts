@@ -4,7 +4,6 @@ let speed = 100;
 
 //
 // Global type creation
-
 declare global {
 	namespace Phaser.GameObjects {
 		interface GameObjectFactory {
@@ -13,7 +12,21 @@ declare global {
 	}
 }
 
+enum HealthState {
+	IDLE,
+	DAMAGE,
+	DEAD,
+}
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
+	private healthState = HealthState.IDLE;
+	private damageTime = 0;
+
+	private _health = 3;
+	get health() {
+		return this._health;
+	}
+
 	constructor(
 		scene: Phaser.Scene,
 		x: number,
@@ -26,14 +39,68 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.anims.play('player-idle-down');
 	}
 
+	handleDamage(dir: Phaser.Math.Vector2) {
+		// if (this._health <= 0) {
+		// 	return;
+		// }
+
+		//
+		// If damage
+		if (this.healthState == HealthState.DAMAGE) {
+			return;
+		}
+
+		--this._health;
+
+		//
+		// If we die
+		if (this._health <= +0) {
+			this.healthState = HealthState.DEAD;
+			this.anims.play('player-idle-up');
+			this.setVelocity(0, 0);
+		} else {
+			this.setVelocity(dir.x, dir.y);
+			this.setTint(0xff0000);
+
+			this.healthState = HealthState.DAMAGE;
+			this.damageTime = 0;
+		}
+	}
+
 	preUpdate(t: number, dt: number) {
 		super.preUpdate(t, dt);
+
+		//
+		// If state is IDLE or DAMAGE
+		switch (this.healthState) {
+			case HealthState.IDLE:
+				break;
+			case HealthState.DAMAGE:
+				this.damageTime += dt;
+				if (this.damageTime >= 250) {
+					this.healthState = HealthState.IDLE;
+					this.setTint(0xffffff);
+					this.damageTime = 0;
+				}
+				break;
+			case HealthState.DEAD:
+				break;
+		}
 	}
 
 	update(keys: Phaser.Types.Input.Keyboard.CursorKeys) {
 		//
 		// If no keybord inputs
 		if (!keys) {
+			return;
+		}
+
+		//
+		// If damage or die
+		if (
+			this.healthState === HealthState.DAMAGE ||
+			this.healthState === HealthState.DEAD
+		) {
 			return;
 		}
 

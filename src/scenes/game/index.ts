@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-import { debugGraphics } from '../../utils';
+import { debugGraphics, sceneEvent } from '../../utils';
 
 import '../../player';
 import Player, { setPlayerAnimations } from '../../player';
@@ -9,6 +9,7 @@ import Enemy, { setEnemyAnimations } from '../../enemy';
 export default class Game extends Phaser.Scene {
 	private keys!: Phaser.Types.Input.Keyboard.CursorKeys;
 	private player!: Player;
+	private playerEnemyCollider?: Phaser.Physics.Arcade.Collider;
 
 	constructor() {
 		super('game');
@@ -61,8 +62,40 @@ export default class Game extends Phaser.Scene {
 		this.physics.add.collider(enemies, walls);
 
 		//
+		// Collision for player and enemies
+		this.playerEnemyCollider = this.physics.add.collider(
+			enemies,
+			this.player,
+			this.handlePlayerEnemyCollision,
+			undefined,
+			this,
+		);
+
+		//
 		// Debug walls
 		debugGraphics(walls, this);
+	}
+
+	private handlePlayerEnemyCollision(
+		a: Phaser.GameObjects.GameObject,
+		b: Phaser.GameObjects.GameObject,
+	) {
+		const enemy = b as Enemy;
+
+		//
+		// Create expulsion animation
+		const dx = this.player.x - enemy.x;
+		const dy = this.player.y - enemy.y;
+		const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
+		this.player.handleDamage(dir);
+
+		sceneEvent.emit('player-health-changer', this.player.health);
+
+		//
+		// If player die, stop collision
+		if (this.player.health <= 0) {
+			this.playerEnemyCollider?.destroy;
+		}
 	}
 
 	update(t: number, dt: number) {
