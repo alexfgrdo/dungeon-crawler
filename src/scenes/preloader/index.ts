@@ -18,6 +18,10 @@ export default class Preloader extends Phaser.Scene {
 		//
 		// Load player
 		this.load.atlas('player', 'player/player.png', 'player/player.json');
+
+		//
+		// Load player
+		this.load.atlas('enemy', 'enemy/enemy.png', 'enemy/enemy.json');
 	}
 
 	create() {
