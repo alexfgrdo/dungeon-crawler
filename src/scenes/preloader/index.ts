@@ -14,6 +14,10 @@ export default class Preloader extends Phaser.Scene {
 		// Load tilemap
 		this.load.image('tiles', 'tileset/tileset_extruded.png');
 		this.load.tilemapTiledJSON('tileset', 'tileset/tileset.json');
+
+		//
+		// Load player
+		this.load.atlas('player', 'player/player.png', 'player/player.json');
 	}
 
 	create() {
