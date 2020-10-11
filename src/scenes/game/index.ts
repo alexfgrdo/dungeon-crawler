@@ -63,8 +63,15 @@ export default class Game extends Phaser.Scene {
 		});
 
 		//
-		// Position for enemy
+		// Position for enemies
 		this.enemies.get(150, 150, 'enemy');
+		this.enemies.get(200, 150, 'enemy');
+		this.enemies.get(200, 250, 'enemy');
+		this.enemies.get(225, 300, 'enemy');
+		this.enemies.get(225, 300, 'enemy');
+		this.enemies.get(225, 300, 'enemy');
+		this.enemies.get(225, 300, 'enemy');
+		this.enemies.get(225, 300, 'enemy');
 
 		// Set player attack
 		this.knives = this.physics.add.group({
