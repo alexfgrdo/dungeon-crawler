@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+import { debugGraphics } from '../../utils';
+
 import '../../player';
 import Player, { setPlayerAnimations } from '../../player';
 import Enemy, { setEnemyAnimations } from '../../enemy';
@@ -57,6 +59,10 @@ export default class Game extends Phaser.Scene {
 		// Position and collisions for enemy
 		enemies.get(256, 256, 'enemy');
 		this.physics.add.collider(enemies, walls);
+
+		//
+		// Debug walls
+		debugGraphics(walls, this);
 	}
 
 	update(t: number, dt: number) {
