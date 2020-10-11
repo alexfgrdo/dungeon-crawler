@@ -22,6 +22,10 @@ export default class Game extends Phaser.Scene {
 	}
 	create() {
 		//
+		// Load interface
+		this.scene.run('interface');
+
+		//
 		// Load animations animations
 		setPlayerAnimations(this.anims);
 		setEnemyAnimations(this.anims);
@@ -89,7 +93,7 @@ export default class Game extends Phaser.Scene {
 		const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
 		this.player.handleDamage(dir);
 
-		sceneEvent.emit('player-health-changer', this.player.health);
+		sceneEvent.emit('player-health-changed', this.player.health);
 
 		//
 		// If player die, stop collision
