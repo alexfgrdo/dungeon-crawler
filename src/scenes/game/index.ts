@@ -36,13 +36,15 @@ export default class Game extends Phaser.Scene {
 		walls.setCollisionByProperty({ collider: true });
 
 		//
-		// Add player to the scene
+		// Add player to the scene, this collision and camera
 		this.player = this.add.player(128, 128, 'player');
+		this.physics.add.collider(this.player, walls);
+		this.cameras.main.startFollow(this.player, true);
 	}
 
 	update(t: number, dt: number) {
 		//
-		// Ajout des directions dans la scène pour Player
+		// Allow direction in the scene for the player
 		if (this.player) {
 			this.player.update(this.keys);
 		}
