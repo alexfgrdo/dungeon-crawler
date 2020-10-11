@@ -102,7 +102,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			this.y,
 			'knife',
 		) as Phaser.Physics.Arcade.Image;
+
+		knife.setActive(true);
+		knife.setVisible(true);
+
 		knife.setRotation(angle);
+
+		knife.x += vector.x * 16;
+		knife.y += vector.y * 16;
+
 		knife.setVelocity(vector.x * 300, vector.y * 300);
 	}
 

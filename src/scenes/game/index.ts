@@ -11,6 +11,9 @@ export default class Game extends Phaser.Scene {
 	private player!: Player;
 	private playerEnemyCollider?: Phaser.Physics.Arcade.Collider;
 
+	private knives!: Phaser.Physics.Arcade.Group;
+	private enemies!: Phaser.Physics.Arcade.Group;
+
 	constructor() {
 		super('game');
 	}
@@ -51,7 +54,7 @@ export default class Game extends Phaser.Scene {
 
 		//
 		// Add enemies to the world
-		const enemies = this.physics.add.group({
+		this.enemies = this.physics.add.group({
 			classType: Enemy,
 			createCallback: (go) => {
 				const enemyGo = go as Enemy;
@@ -61,29 +64,34 @@ export default class Game extends Phaser.Scene {
 
 		//
 		// Position for enemy
-		enemies.get(150, 150, 'enemy');
+		this.enemies.get(150, 150, 'enemy');
 
 		// Set player attack
-		const knives = this.physics.add.group({
+		this.knives = this.physics.add.group({
 			classType: Phaser.Physics.Arcade.Image,
 		});
 
-		this.player.setKnives(knives);
+		this.player.setKnives(this.knives);
 
 		// Set collisions
 		this.physics.add.collider(this.player, walls);
-		this.physics.add.collider(enemies, walls);
-		this.physics.add.collider(knives, walls);
-		this.physics.add.collider(knives, enemies);
+		this.physics.add.collider(this.enemies, walls);
 		this.physics.add.collider(
-			knives,
-			enemies,
+			this.knives,
+			walls,
+			this.handleKnivesWallsCollision,
+			undefined,
+			this,
+		);
+		this.physics.add.collider(
+			this.knives,
+			this.enemies,
 			this.handleKnivesEnemyCollision,
 			undefined,
 			this,
 		);
 		this.playerEnemyCollider = this.physics.add.collider(
-			enemies,
+			this.enemies,
 			this.player,
 			this.handlePlayerEnemyCollision,
 			undefined,
@@ -93,14 +101,6 @@ export default class Game extends Phaser.Scene {
 		//
 		// Debug walls
 		// debugGraphics(walls, this);
-	}
-
-	private handleKnivesEnemyCollision(
-		a: Phaser.GameObjects.GameObject,
-		b: Phaser.GameObjects.GameObject,
-	) {
-		console.dir(a);
-		console.dir(b);
 	}
 
 	private handlePlayerEnemyCollision(
@@ -125,6 +125,21 @@ export default class Game extends Phaser.Scene {
 		if (this.player.health <= 0) {
 			this.playerEnemyCollider?.destroy;
 		}
+	}
+
+	private handleKnivesEnemyCollision(
+		a: Phaser.GameObjects.GameObject,
+		b: Phaser.GameObjects.GameObject,
+	) {
+		this.knives.killAndHide(a);
+		this.enemies.killAndHide(b);
+	}
+
+	private handleKnivesWallsCollision(
+		a: Phaser.GameObjects.GameObject,
+		b: Phaser.GameObjects.GameObject,
+	) {
+		this.knives.killAndHide(a);
 	}
 
 	update(t: number, dt: number) {
