@@ -35,15 +35,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		frame?: string | number,
 	) {
 		super(scene, x, y, texture, frame);
-
-		this.anims.play('player-idle-down');
 	}
 
 	handleDamage(dir: Phaser.Math.Vector2) {
-		// if (this._health <= 0) {
-		// 	return;
-		// }
-
 		//
 		// If damage
 		if (this.healthState == HealthState.DAMAGE) {
@@ -56,14 +50,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// If we die
 		if (this._health <= +0) {
 			this.healthState = HealthState.DEAD;
-			this.anims.play('player-idle-up');
 			this.setVelocity(0, 0);
 		} else {
-			this.setVelocity(dir.x, dir.y);
-			this.setTint(0xff0000);
-
 			this.healthState = HealthState.DAMAGE;
-			this.damageTime = 0;
+			this.setVelocity(dir.x, dir.y);
 		}
 	}
 
@@ -77,13 +67,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				break;
 			case HealthState.DAMAGE:
 				this.damageTime += dt;
+				this.anims.play('player-hit');
+				this.setTint(0xff0000);
+
 				if (this.damageTime >= 250) {
 					this.healthState = HealthState.IDLE;
-					this.setTint(0xffffff);
 					this.damageTime = 0;
+					this.setTint(0xffffff);
 				}
 				break;
 			case HealthState.DEAD:
+				this.anims.play('player-dead');
 				break;
 		}
 	}
@@ -108,25 +102,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Configuration of animations, velocity and directions
 		if (keys.left?.isDown) {
 			this.setVelocity(-speed, 0);
-			this.anims.play('player-walk-side', true);
+			this.anims.play('player-run', true);
 			this.scaleX = -1;
 			this.body.offset.x = 16;
 		} else if (keys.right?.isDown) {
 			this.setVelocity(speed, 0);
-			this.anims.play('player-walk-side', true);
+			this.anims.play('player-run', true);
 			this.scaleX = 1;
 			this.body.offset.x = 0;
 		} else if (keys.up?.isDown) {
 			this.setVelocity(0, -speed);
-			this.anims.play('player-walk-up', true);
+			this.anims.play('player-run', true);
 		} else if (keys.down?.isDown) {
 			this.setVelocity(0, speed);
-			this.anims.play('player-walk-down', true);
+			this.anims.play('player-run', true);
 		} else {
-			const parts = this.anims.currentAnim.key.split('-');
-			parts[1] = 'idle';
 			this.setVelocity(0, 0);
-			this.anims.play(parts.join('-'));
+			this.anims.play('player-idle', true);
 		}
 	}
 }

@@ -4,65 +4,44 @@ export const setPlayerAnimations = (
 	anims: Phaser.Animations.AnimationManager,
 ) => {
 	//
-	// Player animation, idle down
+	// Player animation, idle
 	anims.create({
-		key: 'player-idle-down',
-		frames: [{ key: 'player', frame: 'player_walk_down_1.png' }],
-	});
-
-	//
-	// Player animation, idle up
-	anims.create({
-		key: 'player-idle-up',
-		frames: [{ key: 'player', frame: 'player_walk_up_1.png' }],
-	});
-
-	//
-	// Player animation, idle side
-	anims.create({
-		key: 'player-idle-side',
-		frames: [{ key: 'player', frame: 'player_walk_side_1.png' }],
-	});
-
-	//
-	// Player animation, walk down
-	anims.create({
-		key: 'player-walk-down',
+		key: 'player-idle',
 		frames: anims.generateFrameNames('player', {
 			start: 1,
 			end: 4,
-			prefix: 'player_walk_down_',
+			prefix: 'player-idle-',
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 15,
+		frameRate: 12,
 	});
 
 	//
-	// Player animation, walk down
+	// Player animation, run
 	anims.create({
-		key: 'player-walk-up',
+		key: 'player-run',
 		frames: anims.generateFrameNames('player', {
 			start: 1,
 			end: 4,
-			prefix: 'player_walk_up_',
+			prefix: 'player-run-',
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 15,
+		frameRate: 14,
 	});
 
 	//
-	// Player animation, walk down
+	// Player animation, hit
 	anims.create({
-		key: 'player-walk-side',
-		frames: anims.generateFrameNames('player', {
-			start: 1,
-			end: 4,
-			prefix: 'player_walk_side_',
-			suffix: '.png',
-		}),
-		repeat: -1,
-		frameRate: 15,
+		key: 'player-hit',
+		frames: [{ key: 'player', frame: 'player-hit.png' }],
+	});
+
+	//
+	// Player animation, dead
+	anims.create({
+		key: 'player-dead',
+		frames: [{ key: 'player', frame: 'player-dead.png' }],
 	});
 };

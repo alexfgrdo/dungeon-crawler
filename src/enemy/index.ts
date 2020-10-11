@@ -34,7 +34,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 	) {
 		super(scene, x, y, texture, frame);
 
-		this.anims.play('enemy-walk-down');
+		//
+		// Play enemy animation
+		this.anims.play('enemy-run');
 
 		//
 		// Add collision with the world
@@ -83,24 +85,20 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		switch (this.direction) {
 			case Direction.UP:
 				this.setVelocity(0, -speed);
-				this.anims.play('enemy-walk-up');
 				break;
 
 			case Direction.DOWN:
 				this.setVelocity(0, speed);
-				this.anims.play('enemy-walk-down');
 				break;
 
 			case Direction.LEFT:
 				this.setVelocity(-speed, 0);
-				this.anims.play('enemy-walk-side');
 				this.scaleX = -1;
 				this.body.offset.x = 16;
 				break;
 
 			case Direction.RIGHT:
 				this.setVelocity(speed, 0);
-				this.anims.play('enemy-walk-side');
 				this.scaleX = 1;
 				this.body.offset.x = 0;
 				break;

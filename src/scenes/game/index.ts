@@ -77,7 +77,7 @@ export default class Game extends Phaser.Scene {
 
 		//
 		// Debug walls
-		debugGraphics(walls, this);
+		// debugGraphics(walls, this);
 	}
 
 	private handlePlayerEnemyCollision(
