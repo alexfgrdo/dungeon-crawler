@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+import { Game } from './scenes';
+
 const CONFIG: Object = {
 	type: Phaser.AUTO,
 	width: 400,
@@ -12,6 +14,7 @@ const CONFIG: Object = {
 			debug: true,
 		},
 	},
+	scene: [Game],
 };
 
 export default new Phaser.Game(CONFIG);

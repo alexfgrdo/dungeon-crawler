@@ -1,33 +1,33 @@
 {
-  "name": "dungeon-crawler",
-  "description": "Dungeon crawler game developed with TypeScript and Phaser.",
-  "version": "0.1.0",
-  "main": "src/index.ts",
-  "repository": "https://github.com/alexfgrdo/dungeon-crawler.git",
-  "author": "Alexandre Figueiredo <alexfgrdo@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
-    "eslint": "^7.11.0",
-    "minimist": "^1.2.5",
-    "parcel-plugin-clean-easy": "^1.0.2",
-    "parcel-plugin-static-files-copy": "^2.5.0",
-    "prettier": "^2.1.2",
-    "typescript": "^4.0.3"
-  },
-  "dependencies": {
-    "phaser": "^3.24.1"
-  },
-  "scripts": {
-    "build": "parcel build public/index.html --out-dir dist",
-    "start": "parcel public/index.html -p 8080"
-  },
-  "parcelCleanPath": [
-    "dist"
-  ],
-  "staticFiles": {
-    "staticPath": "public/assets",
-    "watcherGlob": "**"
-  }
+	"name": "dungeon-crawler",
+	"description": "Dungeon crawler game developed with TypeScript and Phaser.",
+	"version": "0.1.0",
+	"main": "src/index.ts",
+	"repository": "https://github.com/alexfgrdo/dungeon-crawler.git",
+	"author": "Alexandre Figueiredo <alexfgrdo@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.4.0",
+		"@typescript-eslint/parser": "^4.4.0",
+		"eslint": "^7.11.0",
+		"minimist": "^1.2.5",
+		"parcel-plugin-clean-easy": "^1.0.2",
+		"parcel-plugin-static-files-copy": "^2.5.0",
+		"prettier": "^2.1.2",
+		"typescript": "^4.0.3"
+	},
+	"dependencies": {
+		"phaser": "^3.24.1"
+	},
+	"scripts": {
+		"build": "parcel build public/index.html --out-dir dist",
+		"start": "parcel public/index.html -p 8080"
+	},
+	"parcelCleanPath": [
+		"dist"
+	],
+	"staticFiles": {
+		"staticPath": "public/assets",
+		"watcherGlob": "**"
+	}
 }
