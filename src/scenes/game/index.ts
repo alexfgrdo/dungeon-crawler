@@ -1,7 +1,11 @@
 import Phaser from 'phaser';
 
+import '../../player';
+import Player, { setPlayerAnimation } from '../../player';
+
 export default class Game extends Phaser.Scene {
 	private keys!: Phaser.Types.Input.Keyboard.CursorKeys;
+	private player!: Player;
 
 	constructor() {
 		super('game');
@@ -11,6 +15,11 @@ export default class Game extends Phaser.Scene {
 		//
 		// Keyboard inputs creation
 		this.keys = this.input.keyboard.createCursorKeys();
+	}
+	create() {
+		//
+		// Load player animations
+		setPlayerAnimation(this.anims);
 
 		//
 		// Tileset creation
@@ -25,6 +34,17 @@ export default class Game extends Phaser.Scene {
 		//
 		// Set walls collision
 		walls.setCollisionByProperty({ collider: true });
+
+		//
+		// Add player to the scene
+		this.player = this.add.player(128, 128, 'player');
 	}
-	create() {}
+
+	update(t: number, dt: number) {
+		//
+		// Ajout des directions dans la scène pour Player
+		if (this.player) {
+			this.player.update(this.keys);
+		}
+	}
 }
