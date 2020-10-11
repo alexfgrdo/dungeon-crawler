@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-export const setPlayerAnimation = (
+export const setPlayerAnimations = (
 	anims: Phaser.Animations.AnimationManager,
 ) => {
 	//

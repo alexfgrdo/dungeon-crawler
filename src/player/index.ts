@@ -90,4 +90,4 @@ Phaser.GameObjects.GameObjectFactory.register('player', function (
 	return sprite;
 });
 
-export { setPlayerAnimation } from './animations';
+export { setPlayerAnimations } from './animations';
