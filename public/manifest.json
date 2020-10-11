@@ -1,0 +1,7 @@
+{
+  "name": "Dungeon Crawler",
+  "short_name": "Dungeon Crawler",
+  "description": "Dungeon crawler game developed with TypeScript and Phaser.",
+  "start_url": "/?utm_source_web=web_app_manifest",
+  "display": "standalone"
+}

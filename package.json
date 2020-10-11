@@ -1,7 +1,8 @@
 {
   "name": "dungeon-crawler",
-  "version": "1.0.0",
-  "main": "index.js",
+  "description": "Dungeon crawler game developed with TypeScript and Phaser.",
+  "version": "0.1.0",
+  "main": "src/index.ts",
   "repository": "https://github.com/alexfgrdo/dungeon-crawler.git",
   "author": "Alexandre Figueiredo <alexfgrdo@gmail.com>",
   "license": "MIT",
