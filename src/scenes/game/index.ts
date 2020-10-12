@@ -138,15 +138,18 @@ export default class Game extends Phaser.Scene {
 		a: Phaser.GameObjects.GameObject,
 		b: Phaser.GameObjects.GameObject,
 	) {
-		// this.knives.killAndHide(a);
+		this.knives.killAndHide(a);
+		this.knives.remove(a);
 		this.enemies.killAndHide(b);
+		this.enemies.remove(b);
 	}
 
 	private handleKnivesWallsCollision(
 		a: Phaser.GameObjects.GameObject,
 		b: Phaser.GameObjects.GameObject,
 	) {
-		// this.knives.killAndHide(a);
+		this.knives.killAndHide(a);
+		this.knives.remove(a);
 	}
 
 	update(t: number, dt: number) {
