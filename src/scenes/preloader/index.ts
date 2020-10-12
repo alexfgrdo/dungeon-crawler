@@ -30,7 +30,7 @@ export default class Preloader extends Phaser.Scene {
 
 		//
 		// Load interface assets
-		this.load.image('knife', 'player/player_attack.png');
+		this.load.image('knife', 'knife/knife.png');
 	}
 
 	create() {

@@ -18,7 +18,7 @@ export const setPlayerAnimations = (
 	});
 
 	//
-	// Player animation, run
+	// Player animation, run down
 	anims.create({
 		key: 'player-run-down',
 		frames: anims.generateFrameNames('player', {
@@ -32,7 +32,7 @@ export const setPlayerAnimations = (
 	});
 
 	//
-	// Player animation, run
+	// Player animation, run up
 	anims.create({
 		key: 'player-run-up',
 		frames: anims.generateFrameNames('player', {
@@ -46,7 +46,7 @@ export const setPlayerAnimations = (
 	});
 
 	//
-	// Player animation, run
+	// Player animation, run side
 	anims.create({
 		key: 'player-run-side',
 		frames: anims.generateFrameNames('player', {
