@@ -9,22 +9,50 @@ export const setPlayerAnimations = (
 		key: 'player-idle',
 		frames: anims.generateFrameNames('player', {
 			start: 1,
-			end: 4,
-			prefix: 'player-idle-',
+			end: 2,
+			prefix: 'player_idle_',
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 12,
+		frameRate: 6,
 	});
 
 	//
 	// Player animation, run
 	anims.create({
-		key: 'player-run',
+		key: 'player-run-down',
 		frames: anims.generateFrameNames('player', {
 			start: 1,
 			end: 4,
-			prefix: 'player-run-',
+			prefix: 'player_run_down_',
+			suffix: '.png',
+		}),
+		repeat: -1,
+		frameRate: 14,
+	});
+
+	//
+	// Player animation, run
+	anims.create({
+		key: 'player-run-up',
+		frames: anims.generateFrameNames('player', {
+			start: 1,
+			end: 4,
+			prefix: 'player_run_up_',
+			suffix: '.png',
+		}),
+		repeat: -1,
+		frameRate: 14,
+	});
+
+	//
+	// Player animation, run
+	anims.create({
+		key: 'player-run-side',
+		frames: anims.generateFrameNames('player', {
+			start: 1,
+			end: 4,
+			prefix: 'player_run_side_',
 			suffix: '.png',
 		}),
 		repeat: -1,
@@ -35,13 +63,13 @@ export const setPlayerAnimations = (
 	// Player animation, hit
 	anims.create({
 		key: 'player-hit',
-		frames: [{ key: 'player', frame: 'player-hit.png' }],
+		frames: [{ key: 'player', frame: 'player_hit.png' }],
 	});
 
 	//
 	// Player animation, dead
 	anims.create({
 		key: 'player-dead',
-		frames: [{ key: 'player', frame: 'player-dead.png' }],
+		frames: [{ key: 'player', frame: 'player_dead.png' }],
 	});
 };
