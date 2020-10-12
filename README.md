@@ -7,6 +7,7 @@
 - [Dungeon Crawler](#dungeon-crawler)
   - [Summary](#summary)
   - [Getting Started](#getting-started)
+    - [Play Game Online](#play-game-online)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
     - [Running](#running)
@@ -20,6 +21,10 @@
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Play Game Online
+
+To play this game, please go to : [dungeon-crawler.alexfgrdo.com/](http://dungeon-crawler.alexfgrdo.com/)
 
 ### Prerequisites
 
