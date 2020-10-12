@@ -119,23 +119,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		//
 		// If state is IDLE or DAMAGE
-		switch (this.healthState) {
-			case HealthState.IDLE:
-				break;
-			case HealthState.DAMAGE:
-				this.damageTime += dt;
-				this.anims.play('player-hit');
-				this.setTint(0xff0000);
+		if (this.healthState === HealthState.IDLE) return;
+		else if (this.healthState === HealthState.DAMAGE) {
+			this.damageTime += dt;
+			this.anims.play('player-hit');
+			this.setTint(0xff0000);
 
-				if (this.damageTime >= 250) {
-					this.healthState = HealthState.IDLE;
-					this.damageTime = 0;
-					this.setTint(0xffffff);
-				}
-				break;
-			case HealthState.DEAD:
-				this.anims.play('player-dead');
-				break;
+			if (this.damageTime >= 250) {
+				this.healthState = HealthState.IDLE;
+				this.damageTime = 0;
+				this.setTint(0xffffff);
+			}
+		} else if (this.healthState === HealthState.DEAD) {
+			this.anims.play('player-dead');
 		}
 	}
 

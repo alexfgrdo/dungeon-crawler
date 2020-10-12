@@ -4,7 +4,7 @@ export const setEnemyAnimations = (
 	anims: Phaser.Animations.AnimationManager,
 ) => {
 	//
-	// Enemy animation, run
+	// Enemy animation, run down
 	anims.create({
 		key: 'enemy-run-down',
 		frames: anims.generateFrameNames('enemy', {
@@ -14,11 +14,11 @@ export const setEnemyAnimations = (
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 15,
+		frameRate: 7,
 	});
 
 	//
-	// Enemy animation, run
+	// Enemy animation, run up
 	anims.create({
 		key: 'enemy-run-up',
 		frames: anims.generateFrameNames('enemy', {
@@ -28,11 +28,11 @@ export const setEnemyAnimations = (
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 15,
+		frameRate: 7,
 	});
 
 	//
-	// Enemy animation, run
+	// Enemy animation, run side
 	anims.create({
 		key: 'enemy-run-side',
 		frames: anims.generateFrameNames('enemy', {
@@ -42,6 +42,6 @@ export const setEnemyAnimations = (
 			suffix: '.png',
 		}),
 		repeat: -1,
-		frameRate: 15,
+		frameRate: 7,
 	});
 };

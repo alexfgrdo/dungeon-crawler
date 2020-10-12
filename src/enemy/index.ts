@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-let speed = 50;
+let speed = 35;
 
 enum Direction {
 	UP,
@@ -77,35 +77,26 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.direction = randomDirection(this.direction);
 	}
 
+	//
+	// Configuration of the direction velocity
 	preUpdate(t: number, dt: number) {
 		super.preUpdate(t, dt);
-
-		//
-		// Configuration of the direction velocity
-		switch (this.direction) {
-			case Direction.UP:
-				this.setVelocity(0, -speed);
-				this.anims.play('enemy-run-up');
-				break;
-
-			case Direction.DOWN:
-				this.setVelocity(0, speed);
-				this.anims.play('enemy-run-down');
-				break;
-
-			case Direction.LEFT:
-				this.setVelocity(-speed, 0);
-				this.anims.play('enemy-run-side');
-				this.scaleX = -1;
-				this.body.offset.x = 16;
-				break;
-
-			case Direction.RIGHT:
-				this.setVelocity(speed, 0);
-				this.anims.play('enemy-run-side');
-				this.scaleX = 1;
-				this.body.offset.x = 0;
-				break;
+		if (this.direction === Direction.DOWN) {
+			this.anims.play('enemy-run-down');
+			this.setVelocity(0, speed);
+		} else if (this.direction === Direction.UP) {
+			this.setVelocity(0, -speed);
+			this.anims.play('enemy-run-up');
+		} else if (this.direction === Direction.LEFT) {
+			this.setVelocity(-speed, 0);
+			this.anims.play('enemy-run-side');
+			this.scaleX = -1;
+			this.body.offset.x = 16;
+		} else if (this.direction === Direction.RIGHT) {
+			this.anims.play('enemy-run-side');
+			this.setVelocity(speed, 0);
+			this.scaleX = 1;
+			this.body.offset.x = 0;
 		}
 	}
 }
