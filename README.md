@@ -24,7 +24,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Play Game Online
 
-To play this game, please go to : [dungeon-crawler.alexfgrdo.com/](http://dungeon-crawler.alexfgrdo.com/)
+To play this game, please go to : [dungeon-crawler.alexfgrdo.com](http://dungeon-crawler.alexfgrdo.com/)
 
 ### Prerequisites
 
