@@ -112,6 +112,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		knife.y += vector.y * 16;
 
 		knife.setVelocity(vector.x * 300, vector.y * 300);
+		knife.body.setSize(knife.width * 0.5, knife.height * 0.5);
 	}
 
 	preUpdate(t: number, dt: number) {
@@ -208,8 +209,7 @@ Phaser.GameObjects.GameObjectFactory.register('player', function (
 
 	//
 	// Set player size
-	sprite.body.setSize(sprite.width * 1, sprite.height * 0.6);
-	sprite.body.offset.y = 10;
+	sprite.body.setSize(sprite.width * 1, sprite.height * 1);
 
 	return sprite;
 });

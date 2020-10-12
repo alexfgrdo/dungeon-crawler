@@ -13,7 +13,7 @@ const CONFIG: Object = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: GAME_GRAVITY },
-			debug: false,
+			debug: true,
 		},
 	},
 	scene: [Preloader, Game, Interface],

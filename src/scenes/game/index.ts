@@ -138,7 +138,7 @@ export default class Game extends Phaser.Scene {
 		a: Phaser.GameObjects.GameObject,
 		b: Phaser.GameObjects.GameObject,
 	) {
-		this.knives.killAndHide(a);
+		// this.knives.killAndHide(a);
 		this.enemies.killAndHide(b);
 	}
 
@@ -146,7 +146,7 @@ export default class Game extends Phaser.Scene {
 		a: Phaser.GameObjects.GameObject,
 		b: Phaser.GameObjects.GameObject,
 	) {
-		this.knives.killAndHide(a);
+		// this.knives.killAndHide(a);
 	}
 
 	update(t: number, dt: number) {
